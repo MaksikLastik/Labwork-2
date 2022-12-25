@@ -9,7 +9,7 @@
 
 ## Пользовательский интерфейс
 
-Форма ввода комментариев![https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Алгоритм%20создания%20заметки.png](https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Алгоритм%20создания%20заметки.png)
+Форма ввода комментариев![](https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Алгоритм%20создания%20заметки.png)
 
 Комментарии пользователей![(https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Заметки%20пользователей.png)](output.png)
 
