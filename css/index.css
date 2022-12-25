@@ -1,0 +1,103 @@
+body {
+    margin: 0px;
+    background: linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%), linear-gradient(45deg, #292929 25%, transparent 25%, transparent 75%, #292929 75%) 0.1875em 0.1875em, radial-gradient(at 50% 0, #484847, #090909);
+    background-size: 0.375em 0.375em, 0.375em 0.375em, 100% 100%;
+}
+
+.wall {
+    width: 800px;
+    height: auto;
+    margin: auto;
+    background: white;
+    position: center;
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;   
+}
+
+.add_note {
+    text-align: center;
+}
+
+.heading {
+    text-align: center;
+}
+
+.note {
+    font-size: 20px;
+    width: 80%;
+    height: 30px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: 2px solid black;
+    background: #cbc6c6;
+    padding-left: 10px;
+    padding-right: 20px;
+    resize: none;
+}
+
+.message {
+    font-size: 20px;
+    width: 80%;
+    height: 100px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: 2px solid black;
+    background: #cbc6c6;
+    padding-left: 10px;
+    padding-right: 20px;
+    resize: none;
+}
+
+.btn_add_note {
+    background-color: #79aace;
+    color: white;
+    position: relative;
+    left: 50%;
+    transform: translate(-100%, 0);
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    opacity: 0.9;
+    border-radius: 10px;
+}
+
+.comment {
+    width: 80%;
+    left: 50%;
+    transform: translate(9%, 0);
+    padding: 16px 20px;
+    padding-left: 20px;
+    margin-bottom: 4px;
+    display: inline-block;
+    border: 1px solid black;
+    background: #d7cccc;
+    border-radius: 10px;
+    word-break: break-all;
+}
+
+.name {
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.like {
+    position: relative;
+    right: 10px;
+    width: 15%;
+    border: none;
+    background-color: #d7cccc;
+    border-radius: 10px;
+    font-weight: bold;
+    color: black;
+}
+
+.img {
+    width: 50%;
+}
