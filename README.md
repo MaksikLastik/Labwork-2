@@ -11,9 +11,11 @@
 
 ## Пользовательский интерфейс
 
-Форма ввода комментариев![alt-текст](https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Форма%20ввода%20заметок.png)
+Форма ввода комментариев
+![alt-текст](https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Форма%20ввода%20заметок.png)
 
-Комментарии пользователей![alt-текст](https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Заметки%20пользователей.png)
+Комментарии пользователей
+![alt-текст](https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Заметки%20пользователей.png)
 
 
 ##  Пользовательский сценарий работы
