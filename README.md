@@ -9,24 +9,24 @@
 
 ## Пользовательский интерфейс
 
-Форма ввода комментариев![input.png](input.png)
+Форма ввода комментариев![https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Алгоритм%20создания%20заметки.png](input.png)
 
-Комментарии пользователей![output.png](output.png)
+Комментарии пользователей![(https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Заметки%20пользователей.png)](output.png)
 
 
 ##  Пользовательский сценарий работы
 
 #### API сервера и хореография
-Сервер использует HTTP POST запросы с полями заголовка и текста комментария.
+Сервер использует HTTP POST запросы с полями заголовка и текста заметки.
 
 **Функция добавления комментариев на сайт:**
-с помощью POST запроса отправляются такие данные как: дата, заголовок и текст комментария.
+с помощью POST запроса отправляются такие данные как, заголовок и текст заметки.
 
 **Функция вывода комментариев на сайте:**
 из базы данных берётся только 100 последних комментариев (их дата добавления, заголовок и текст) и присваивает каждому имя пользователя "Аноним".
 
 #### Пользовательский сценарий работы
-При входе на страницу пользователь видит приветствие "Добро пожаловать в ленту комментариев" и форму для ввода комментария: поля заголовка и комментария.
+При входе на страницу пользователь видит приветствие "Добро пожаловать на стену заметок!" и форму для ввода комментария: поля заголовка и заметки.
 
 ## Структура базы данных
 - **id** (Уникальный идентификатор комментария): INT(11), AUTO_INCREMENT
@@ -39,67 +39,66 @@
 
 - **Алгоритм создания комментария**
 
-![add.png](add.png)
+![https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Алгоритм%20создания%20заметки.png](add.png)
 
-Пользователь может ввести только заголовок и комментарий. Так как лента комментариев анонимная, то у всех пользователей автоматически добавляется имя: Аноним. Также каждому комментарию присваивается дата и время, когда он был отправлен.
+Пользователь может ввести только заголовок и заметки. Так как стена заметок анонимная, то у всех пользователей автоматически добавляется имя: Аноним. Также каждой заметке присваивается дата и время, когда он был отправлен.
 
-![comm.png](comm.png)
+![(https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Заметка.png)](comm.png)
 
 
 - **Алгоритм реакций на комментарии**
 
-Пользователь может выбрать для одну из двух реакций: Like или Dislike. Нажимая на каждую из них количество выбранных реакций увеличивается.
+Пользователь может оценить заметку кнопкой с иконкой лайка. Нажимая на ее количество лайков увеличивается с каждым разом на 1 увеличивается.
 
-![react.png](react.png)
+![https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Реагирование%20на%20заметку.png](react.png)
 
 
 
 ## Программный код, реализующий систему
 
-#### Реализация добавления комментария в БД
+#### Реализация добавления заметки в БД
 ```php
-function setComments($conn) {
-    if(isset($_POST['commentSubmit'])) {
-        $date = $_POST['date'];
+function set_comment($connect) {
+    require_once "connect.php";
+    if(isset($_POST['comment_submit'])) {
         $title = $_POST['title'];
         $message = $_POST['message'];
-        $sql = "INSERT INTO comments (date, title, message) VALUES ('$date', '$title', '$message')";
-        $result = $conn->query($sql);
-        unset($_POST['date']);
+
+        mysqli_query($connect, "INSERT INTO `comments` (`id`, `title`, `message`, `date`, `likes`) VALUES (NULL, '$title', '$message', NOW(), NULL)");
+
         unset($_POST['title']);
         unset($_POST['message']);
     }
 }
 ```
-###  Реализация вывода комментариев с лайками на сайт
+###  Реализация вывода заметок с лайками на сайт
 ```php
-function getComments($conn) {
-    $sql = "SELECT DISTINCT* FROM comments ORDER BY date DESC LIMIT 100";
-    $result = $conn->query($sql);
-    while ($row = $result->fetch_assoc()) {
+function get_comments($connect) {
+    $result = mysqli_query($connect, "SELECT * FROM comments ORDER BY date DESC LIMIT 100");
+    while ($block = mysqli_fetch_assoc($result)) {
         echo "<div class='comment'>
             <br>
-            <div class='name'> Аноним </div>
-            ".$row['date']."<br>
-            <div class='title'> ".$row['title']."<br> </div>
-            ".$row['message']."
-            <div><br><form method='POST' action='".likeSubmit($row)."'> <button type='submit' name='".$row['id']."' class='likebtn'>♡ Like</button>  Likes: ".$row["likes"]."</form></div>
-            <br>
+            <div class='name'>Аноним</div>
+            От ".$block['date']."<hr>
+            <div class='title'>".$block['title']."<br></div><br>
+            ".$block['message']."
+            <div><br><form method='post' action='".add_like($block)."'><button type='submit' name='".$block['id']."' class='like'><img class='img' src='../images/for site/like.png'> ".$block['likes']."</button></form></div>
         </div>
         <br>";
     }
 }
 ```
-### Реализация лайков к комментариям
+### Реализация лайков в заметках
 ```php
-function likeSubmit($row) {    
-    require("connection.php");
-    if(isset($_POST[$row['id']])) {
-        $id = $row['id'];
-        $likes = $row['likes']+1;
-        $query = "UPDATE comments SET likes = '$likes' WHERE id = '$id'";
-        $result = mysqli_query($conn, $query);
-        header('Location: main.php');
+function add_like($block) {
+    require("connect.php");
+    if (isset($_POST[$block['id']])) {
+        $id = $block['id'];
+        $likes = $block['likes'] + 1;
+
+        mysqli_query($connect, "UPDATE comments SET likes = '$likes' WHERE id = '$id'");
+        
+        header('Location: ../index.php');
         exit;
     }
 }
