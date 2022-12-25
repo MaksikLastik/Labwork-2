@@ -1,4 +1,6 @@
 # Реализация шаблона CRUD
+## По курсу "Основы программирования"
+Ссылка на [GitHub](https://github.com/MaksikLastik/Labwork-2)
 
 ## Цель работы:
 Разработать и реализовать клиент-серверную информационную систему, реализующую механизм CRUD.
@@ -9,9 +11,9 @@
 
 ## Пользовательский интерфейс
 
-Форма ввода комментариев![Форма ввода заметок.png](Форма ввода заметок.png)
+Форма ввода комментариев![alt-текст]([Форма ввода заметок.png](https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Форма%20ввода%20заметок.png))
 
-Комментарии пользователей![комментарий](https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Заметки%20пользователей.png)
+Комментарии пользователей![alt-текст](https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Заметки%20пользователей.png)
 
 
 ##  Пользовательский сценарий работы
@@ -39,18 +41,18 @@
 
 - **Алгоритм создания комментария**
 
-![создание](https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Алгоритм%20создания%20заметки.png)
+![alt-текст](https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Алгоритм%20создания%20заметки.png)
 
 Пользователь может ввести только заголовок и заметки. Так как стена заметок анонимная, то у всех пользователей автоматически добавляется имя: Аноним. Также каждой заметке присваивается дата и время, когда он был отправлен.
 
-![аноним](https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Заметка.png)
+![alt-текст](https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Заметка.png)
 
 
 - **Алгоритм реакций на комментарии**
 
 Пользователь может оценить заметку кнопкой с иконкой лайка. Нажимая на ее количество лайков увеличивается с каждым разом на 1 увеличивается.
 
-![реакция](https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Реагирование%20на%20заметку.png)
+![alt-текст](https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Реагирование%20на%20заметку.png)
 
 
 
