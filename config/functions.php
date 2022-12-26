@@ -23,6 +23,7 @@ function get_comments($connect) {
             <div class='title'>".$block['title']."<br></div><br>
             ".$block['message']."
             <div><br><form method='post' action='".add_like($block)."'><button type='submit' name='".$block['id']."' class='like'><img class='img' src='../images/for site/like.png'> ".$block['likes']."</button></form></div>
+            <div><br><form method='post' action='".add_dislike($block)."'><button type='submit' name='".$block['id']."' class='like'><img class='img' src='../images/for site/dislike.png'> ".$block['dislikes']."</button></form></div>
         </div>
         <br>";
     }
@@ -35,6 +36,19 @@ function add_like($block) {
         $likes = $block['likes'] + 1;
 
         mysqli_query($connect, "UPDATE comments SET likes = '$likes' WHERE id = '$id'");
+        
+        header('Location: ../index.php');
+        exit;
+    }
+}
+
+function add_dislike($block) {
+    require("connect.php");
+    if (isset($_POST[$block['id']])) {
+        $id = $block['id'];
+        $dislikes = $block['dislikes'] + 1;
+
+        mysqli_query($connect, "UPDATE comments SET dislikes = '$dislikes' WHERE id = '$id'");
         
         header('Location: ../index.php');
         exit;
