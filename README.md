@@ -8,6 +8,7 @@
 ## Задание: 
 - добавление текстовых заметок в общую ленту
 - реагирование на чужие заметки (лайки)
+- реакции разных видов (дизлайки)
 
 ## Пользовательский интерфейс
 
@@ -36,6 +37,7 @@
 - **message** (Текст комментария): TEXT, NULL
 - **date** (Дата и время создания записи): DATETIME, NULL 
 - **likes** (Количество лайков на комментарии): INT(11), NULL
+- **dislikes** (Количество дизлайков на комментарии): INT(11), NULL
 
 ## Алгоритмы
 
@@ -50,7 +52,7 @@
 
 - **Алгоритм реакций на комментарии**
 
-Пользователь может оценить заметку кнопкой с иконкой лайка. Нажимая на ее количество лайков увеличивается с каждым разом на 1 увеличивается.
+Пользователь может оценить заметку кнопками лайка и дизлайка. Нажимая на них увеличивается с каждым разом на 1 увеличивается.
 
 ![alt-текст](https://github.com/MaksikLastik/Labwork-2/blob/main/images/for%20README/Реагирование%20на%20заметку.png)
 
@@ -90,7 +92,7 @@ function get_comments($connect) {
     }
 }
 ```
-### Реализация лайков в заметках
+### Реализация лайков и дизлайков в заметках
 ```php
 function add_like($block) {
     require("connect.php");
@@ -104,4 +106,16 @@ function add_like($block) {
         exit;
     }
 }
-```
+```php
+function add_dislike($block) {
+    require("connect.php");
+    if (isset($_POST[$block['id']])) {
+        $id = $block['id'];
+        $dislikes = $block['dislikes'] + 1;
+
+        mysqli_query($connect, "UPDATE comments SET dislikes = '$dislikes' WHERE id = '$id'");
+        
+        header('Location: ../index.php');
+        exit;
+    }
+}
