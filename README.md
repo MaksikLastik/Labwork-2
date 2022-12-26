@@ -106,7 +106,7 @@ function add_like($block) {
         exit;
     }
 }
-```php
+
 function add_dislike($block) {
     require("connect.php");
     if (isset($_POST[$block['id']])) {
@@ -119,3 +119,4 @@ function add_dislike($block) {
         exit;
     }
 }
+```
